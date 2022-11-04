@@ -1,5 +1,6 @@
 import FormData from '../apis/FormData';
 import { useEffect, useState } from 'react';
+import StateDropdown from './StateDropdown';
 
 const Form = () => {
 
@@ -19,9 +20,7 @@ const Form = () => {
     return (
         <form>
             <label>Hello World</label>
-            <p>Num states {geoStates.length}</p>
-            <p>Num Occus {occupations.length}</p>
-            
+            <StateDropdown listItems={geoStates} />
         </form>
     )
 
