@@ -1,6 +1,7 @@
 import FormData from '../apis/FormData';
 import { useEffect, useState } from 'react';
-import StateDropdown from './StateDropdown';
+import Dropdown from './Dropdown';
+import OccupationDropdown from './OccupationDropdown';
 
 const Form = () => {
 
@@ -20,7 +21,8 @@ const Form = () => {
     return (
         <form>
             <label>Hello World</label>
-            <StateDropdown listItems={geoStates} />
+            <Dropdown type={"state"} listItems={geoStates} />
+            <Dropdown type={"occupation"} listItems={occupations} />
         </form>
     )
 
