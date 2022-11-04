@@ -9,6 +9,13 @@ class FormData {
             .then(({ data }) => data)
             .catch((error) => console.error(error));
     }
+    async submitFormData(values) {
+        return axios
+            .post(apiUrl, values)
+            .then((response) => {return response})
+            .catch((error) => console.log(error));
+
+    }
 }
 
 export default FormData;
