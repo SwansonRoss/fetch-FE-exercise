@@ -1,4 +1,12 @@
-.App {
-  text-align: center;
+.form-container {
+  width: 50%;
+  max-width: 600px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
 }
 

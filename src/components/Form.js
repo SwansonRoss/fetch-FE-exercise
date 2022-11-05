@@ -45,7 +45,7 @@ const Form = () => {
             formDataHandler.submitFormData(formValues)
                 .then((res) => {
                     //todo: reset form fields
-                    
+
                 })
         } else {
             //TODO: display error message.
@@ -54,15 +54,16 @@ const Form = () => {
     }
 
     return (
-        <form>
-            <TextInput isSecret={false} name={"name"} onChange={setName}/>
-            <TextInput isSecret={false} name={"email"} onChange={setEmail}/>
-            <TextInput isSecret={true} name={"password"} onChange={setPassword}/>
-            <Dropdown type={"state"} listItems={geoStates} onChange={setInputState}/>
-            <Dropdown type={"occupation"} listItems={occupations} onChange={setOccupation}/>
-
-            <button onClick={(e) => submitForm(e)}>Submit</button>
-        </form>
+        <div className={"form-container"}>
+            <form>
+                <TextInput isSecret={false} name={"name"} onChange={setName} label={"Full Name"}/>
+                <TextInput isSecret={false} name={"email"} onChange={setEmail} label={"Email Address"}/>
+                <TextInput isSecret={true} name={"password"} onChange={setPassword} label={"Password"}/>
+                <Dropdown type={"state"} listItems={geoStates} onChange={setInputState} label={"Home State"}/>
+                <Dropdown type={"occupation"} listItems={occupations} onChange={setOccupation} label={"Occupation"}/>
+                <button onClick={(e) => submitForm(e)}>Submit</button>
+            </form>
+        </div>
     )
 
 }
