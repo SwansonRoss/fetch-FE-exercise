@@ -6,7 +6,6 @@ import TextInput from './TextInput';
 const Form = () => {
 
     const formDataHandler = new FormData();
-    const hashAlg = "SHA-256";
 
     const [occupations, setOccupations] = useState([]);
     const [geoStates, setGeoStates] = useState([])  
@@ -25,7 +24,7 @@ const Form = () => {
             setGeoStates(states);
         })
         .catch((error) => console.error(error))
-    }, []);
+    }, [formDataHandler]);
 
     const hashPassword = (password) => {
         //TODO: Implement some acutal password hashing
@@ -61,7 +60,7 @@ const Form = () => {
                 <TextInput isSecret={true} name={"password"} onChange={setPassword} label={"Password"}/>
                 <Dropdown type={"state"} listItems={geoStates} onChange={setInputState} label={"Home State"}/>
                 <Dropdown type={"occupation"} listItems={occupations} onChange={setOccupation} label={"Occupation"}/>
-                <button onClick={(e) => submitForm(e)}>Submit</button>
+                <button className={"form-button"} onClick={(e) => submitForm(e)}>Submit</button>
             </form>
         </div>
     )
