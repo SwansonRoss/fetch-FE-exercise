@@ -2,7 +2,53 @@
 
 Ross Swanson | 1.0.0 | last updated: 11/7/22
 
+This app creates a form for taking in user information. To initialize the form, the app sends a GET request to the `frontend-take-home` API. The API returns an object with occupations and US states which are used to build options for user select inputs. The form also takes in text inputs for user name, email, and password.
+
+On submit, the application checks that all fields have input values, hashes the password value, and sends the data to the `frontend-take-home` api in a POST request.
+
+On success, the app displays a success message. If any errors exist, an error message is displayed.
+
+## Data objects
+The `frontend-take-home` returns data in the following shape:
+```
+{
+    "occupations": [
+        "occupation1",
+        "occupation2",
+        ...
+    ],
+    "states": [
+        {
+            "name": "Alabama",
+            "abbreviation": "AL"
+        },
+        ...
+    ]
+}
+
+```
+
+The `frontend-take-home` expects to recieve data in the following shape:
+```
+{
+    "name": "???",
+    "email": "???",
+    "password": "???",
+    "occupation": "???",
+    "state": "???"
+}
+```
+
+## Dependencies
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+This app uses [Axios](https://www.npmjs.com/package/axios) to send and recieve data from the `frontend-take-home` api
+
+## Further improvements
+
+-  Additional form field validation should be added to ensure email addresses are given in the email field
+- The password hashing function is currently just a placeholder and does not do anything but return the string 'TRIVIALLYHASHEDPASSWORD'; this needs to be updated.
 
 ## Available Scripts
 
