@@ -6,8 +6,14 @@ const TextInput = (props) => {
 
     return (
         <div className={"form-input"}>
-            <label for={props.name}>{props.label}</label>
-            <input id={props.name} name={props.name} type={props.isSecret ? 'password' : 'text'} onChange={(e)=>handleChange(e)}/>
+            <label htmlFor={props.name}>{props.label}</label>
+            <input 
+                id={props.name} 
+                name={props.name} 
+                type={props.isSecret ? 'password' : 'text'} 
+                onChange={(e)=>handleChange(e)} 
+                value={props.value}
+            />
         </div>
     )
 }

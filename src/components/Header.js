@@ -1,9 +1,10 @@
 import Warning from "./Warning"
-const Header = (props) => {
+const Header = ({warning}) => {
     return(
         <header>
             <h1>Enter your contact info</h1>
-            <Warning />
+            {(warning.length) ? <Warning warning={warning[0]} /> : ''}
+            
         </header>
     )
 }

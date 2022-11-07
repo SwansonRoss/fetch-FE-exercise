@@ -1,11 +1,11 @@
 import FormData from '../apis/FormData';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Dropdown from './Dropdown';
 import TextInput from './TextInput';
 
-const Form = () => {
+const Form = (props) => {
 
-    const formDataHandler = new FormData();
+    const formDataHandler = useMemo(() => {return new FormData()}, []);
 
     const [occupations, setOccupations] = useState([]);
     const [geoStates, setGeoStates] = useState([])  
@@ -43,23 +43,72 @@ const Form = () => {
         if(Object.values(formValues).every((val) => val ? true : false)){
             formDataHandler.submitFormData(formValues)
                 .then((res) => {
-                    //todo: reset form fields
-
+                    setName('');
+                    setEmail('');
+                    setPassword('');
+                    setInputState('');
+                    setOccupation('');
+                })
+                .then((res) => {
+                    const error = [{
+                        isError: false
+                    }]
+                    props.useWarning(error);
+                })
+                .catch((err) => {
+                    const error = [{
+                        isError: true,
+                        message: err
+                    }]
+                    props.useWarning(error);
                 })
         } else {
-            //TODO: display error message.
-            console.error('Form missing values')
+            const error = [{
+                isError: true,
+                message: 'form missing values'
+            }]
+            props.useWarning(error);
         }
     }
 
     return (
         <div className={"form-container"}>
-            <form>
-                <TextInput isSecret={false} name={"name"} onChange={setName} label={"Full Name"}/>
-                <TextInput isSecret={false} name={"email"} onChange={setEmail} label={"Email Address"}/>
-                <TextInput isSecret={true} name={"password"} onChange={setPassword} label={"Password"}/>
-                <Dropdown type={"state"} listItems={geoStates} onChange={setInputState} label={"Home State"}/>
-                <Dropdown type={"occupation"} listItems={occupations} onChange={setOccupation} label={"Occupation"}/>
+            <form onChange={() => props.useWarning([])}>
+                <TextInput 
+                    isSecret={false} 
+                    name={"name"} 
+                    onChange={setName} 
+                    label={"Full Name"}
+                    value={name}
+                />
+                <TextInput 
+                    isSecret={false} 
+                    name={"email"} 
+                    onChange={setEmail} 
+                    label={"Email Address"}
+                    value={email}
+                />
+                <TextInput 
+                    isSecret={true} 
+                    name={"password"} 
+                    onChange={setPassword} 
+                    label={"Password"}
+                    value={password}
+                />
+                <Dropdown 
+                    type={"state"} 
+                    listItems={geoStates} 
+                    onChange={setInputState} 
+                    label={"Home State"}
+                    value={inputState}
+                />
+                <Dropdown 
+                    type={"occupation"} 
+                    listItems={occupations} 
+                    onChange={setOccupation} 
+                    label={"Occupation"}
+                    value={occupation}
+                />
                 <button className={"form-button"} onClick={(e) => submitForm(e)}>Submit</button>
             </form>
         </div>

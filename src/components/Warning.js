@@ -1,10 +1,17 @@
-const Warning = (props) => {
+const Warning = ({warning}) => {
+    console.log(warning)
     return (
-        <div className={"error-message"}>
-            <h2>Could not submit form</h2>
-            <ul>
-                <li>Complete all form fields</li>
-            </ul>
+        <div className={`message ${warning.isError ? "error" : "success"}`}>
+            <p>{warning.isError}</p>
+            <h2>{warning.isError ? "Could not submit form" : "Form submitted successfuly"}</h2>
+            {warning.isError ? (
+                <ul>
+                    <li>{warning.message}</li>
+                </ul>
+            ): (
+            ''
+            )
+            }
         </div>
     )
 }

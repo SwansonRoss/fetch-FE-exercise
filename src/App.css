@@ -15,14 +15,26 @@ header li {
   margin: 0;
 }
 
-header .error-message {
+header .message {
   width: 100%;
-  background-color: #f5c0c0;
-  border: 1px solid #ff0000;
   border-radius: 1em;
   padding: 1em 2em;
   margin-top: 1em;
 }
+
+header .message.error{
+  background-color: #f5c0c0;
+  border: 1px solid #ff0000;
+}
+header .message.success{
+  background-color: #ecfff9;
+}
+
+header .message.success h2 {
+  font-size: 1em;
+}
+
+
 
 .form-container {
   width: 50%;
